@@ -21,7 +21,7 @@
 
 .brand img {
     animation-name: swift;
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -32,7 +32,7 @@
         transform: translateX(-3px);
     }
     to {
-        transform: translateX(3px);
+        transform: translateX(6px);
     }
 }
 

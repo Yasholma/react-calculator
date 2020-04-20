@@ -43,7 +43,7 @@ function App() {
             value = "*";
         }
 
-        if (value === "AC" || value === 0) {
+        if (value === "AC") {
             setCurrent("");
             setDisplay("0");
             setOldResult(0);
@@ -59,6 +59,8 @@ function App() {
         } else if (oldResult) {
             if (["+", "/", "*", "-"].includes(value)) {
                 setCurrent(oldResult + value);
+            } else if (value === ".") {
+                return;
             } else {
                 setCurrent(value);
             }
@@ -67,14 +69,21 @@ function App() {
             setEqualOpUsed(false);
         } else {
             if ((current === "" && display === "0") || equalOpUsed) {
+                if (["/", "*", "."].includes(value)) {
+                    return;
+                }
                 setCurrent(value);
                 setDisplay(value);
             } else {
-                if (["+", "/", "*", "-", "."].includes(value)) {
+                if (["+", "/", "*", "-"].includes(value)) {
                     if (
-                        (display.toString().match(/\.|\*|\/|\+|-/g) || [])
-                            .length < 1
+                        (display.toString().match(/\+|\*|\/|-/g) || []).length <
+                        1
                     ) {
+                        setCurrent((current += value.toString()));
+                    }
+                } else if (value === ".") {
+                    if (display.toString().search(/\./g) === -1) {
                         setCurrent((current += value.toString()));
                     }
                 } else {
