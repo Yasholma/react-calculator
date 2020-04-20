@@ -1,38 +1,273 @@
 .App {
-  text-align: center;
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+    background: #ddd;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App.dark {
+    background: hsla(0, 100%, 0%, 0.8);
+    color: #fff;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.brand {
+    margin: -1.5rem auto 0.6rem;
+    text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.brand img {
+    animation-name: swift;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
-.App-link {
-  color: #61dafb;
+@keyframes swift {
+    from {
+        transform: translateX(-3px);
+    }
+    to {
+        transform: translateX(3px);
+    }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.brand p {
+    margin: 0 auto 0.4rem;
+    padding: 0;
+    text-align: center;
+    font-family: Nunito, sans-serif;
+}
+
+.brand p a {
+    text-decoration: none;
+    color: #09a78c;
+    transition: all 300ms linear;
+}
+
+.brand p a:hover {
+    text-decoration: underline;
+}
+
+.calc-body {
+    padding: 1rem;
+    box-sizing: border-box;
+    margin: 0 1rem;
+    min-height: 450px;
+    height: auto;
+    border-radius: 0.3rem;
+    box-shadow: 0px 0px 0.2rem #fff;
+    background: hsla(0, 100%, 100%, 0.8);
+    transition: all 300ms ease-in-out;
+}
+
+.calc-body.dark {
+    background: hsla(0, 100%, 0%, 0.8);
+}
+
+.calc-body.dark .display {
+    background: hsla(0, 100%, 100%, 0.8);
+    color: #000;
+}
+
+.calc-body.dark .current {
+    color: #09a78c;
+}
+
+.calc-body.dark .btn {
+    box-shadow: 0 2px 2px #fff, 0 -1px 2px #000;
+}
+
+.display {
+    margin: 0.5rem auto 1rem;
+    min-height: 65px;
+    height: 70px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    padding: 0.6rem 0.5rem;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 0.4rem;
+    color: #fff;
+    font-family: Nunito, sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    box-shadow: 0px 0px 0.2rem #fff;
+}
+
+.current {
+    font-size: 0.8rem;
+    color: #66e7d2;
+    letter-spacing: 0.09rem;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+        "clr div mul sub"
+        "sev egt nie add"
+        "for fiv six ..."
+        "one two thr eql"
+        "... zer ... eql";
+    margin: 1.5rem auto 0.5rems;
+}
+
+.btn {
+    width: 60px;
+    height: 60px;
+    border: 0;
+    box-sizing: border-box;
+    border-radius: 50%;
+    outline: 0;
+    margin: 0.2rem;
+    font-family: "Nunito", sans-serif;
+    font-size: 1.3rem;
+    box-shadow: 0 2px 2px #000, 0 -1px 2px #fff;
+    transition: all 300ms linear;
+}
+
+.calc-body.dark .btn:hover,
+.calc-body.dark .btn:active,
+.btn:hover,
+.btn:active {
+    box-shadow: 0 0px 0px #000, 0 0 0 #fff;
+}
+
+#clear {
+    grid-area: clr;
+    background: rgb(172, 57, 57);
+    color: #fff;
+    font-weight: bold;
+}
+
+#equals {
+    grid-area: eql;
+    background-color: #0077ff;
+    color: #fff;
+    font-weight: bold;
+}
+
+#divide {
+    grid-area: div;
+}
+
+#multiply {
+    grid-area: mul;
+}
+
+#add {
+    grid-area: add;
+}
+
+#subtract {
+    grid-area: sub;
+}
+
+#one {
+    grid-area: one;
+}
+#two {
+    grid-area: two;
+}
+#three {
+    grid-area: thr;
+}
+#four {
+    grid-area: for;
+}
+#five {
+    grid-area: fiv;
+}
+#six {
+    grid-area: six;
+}
+#seven {
+    grid-area: sev;
+}
+#eight {
+    grid-area: egt;
+}
+#nine {
+    grid-area: nie;
+}
+#zero {
+    grid-area: zer;
+}
+
+#one,
+#two,
+#three,
+#four,
+#five,
+#six,
+#seven,
+#eight,
+#nine,
+#zero {
+    background: #09a78c;
+    color: #fff;
+}
+
+.mode {
+    border: 0;
+    padding: 0.3rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0;
+    border: 1px solid #09a78c;
+    background: white;
+    color: black;
+    font-family: Nunito, sans-serif;
+    font-size: 0.8rem;
+    text-align: center;
+    font-weight: bold;
+    outline: none;
+}
+
+.mode.dark {
+    color: #fff;
+    background: #000;
+    border-color: transparent;
+}
+
+@media (max-width: 320px) {
+    .brand {
+        margin: 0rem auto 0.3rem;
+        text-align: center;
+    }
+    .brand p {
+        margin: 0 auto 0rem;
+    }
+    .calc-body {
+        padding: 1rem 1rem 0.5rem;
+        box-sizing: border-box;
+        margin: 0 1rem 1.5rem;
+        min-height: 300px;
+        height: auto;
+    }
+
+    .display {
+        margin: 0.2rem auto 0.7rem;
+        min-height: 40px;
+        height: 45px;
+        padding: 0.6rem 0.5rem 0rem;
+    }
+
+    .current {
+        line-height: 1;
+    }
+
+    .btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
 }
